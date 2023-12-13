@@ -67,8 +67,8 @@ class LoginAPIView(APIView):
 
 class CreateUserAPIView(APIView):
 
-    authentication_classes = [JWTTokenUserAuthentication]
-    permission_classes = [IsAuthenticated]
+    # authentication_classes = [JWTTokenUserAuthentication]
+    # permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()  # Create a copy of the request data
         password = data.pop('password', None)  # Remove the password from data and get it
@@ -130,7 +130,7 @@ class CountData(APIView):
             "message": "Data retrieve sucessfully",
             "data": data,
 
-        }, status=status.HTTP_400_BAD_REQUEST)
+        }, status=status.HTTP_200_OK)
 
 class UpdateUserAPIView(APIView):
     
@@ -254,12 +254,12 @@ class TagViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
         if serializer.is_valid():
             self.perform_update(serializer)
-            data = {
+            respDt = {
                 "success": True,
                 "message": "Data updated successfully",
                 "data": serializer.data
             }
-            return Response(data, status=status.HTTP_200_OK)
+            return Response(data=respDt, status=status.HTTP_200_OK)
         else:
             data = {
                 "success": False,

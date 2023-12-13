@@ -68,12 +68,13 @@ AUTHENTICATION_BACKENDS = [
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=24),
+    'REFRESH_TOKEN_LIFETIME': timedelta(hours=23),
 }
 
 CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000 ',
+    'http://localhost:3000',
     'http://localhost:8081',
     'http://localhost:3001',
     'http://localhost:3002',
